@@ -11,6 +11,6 @@ CharacterDancer.prototype.constructor = CharacterDancer;
 
 CharacterDancer.prototype.step = function(){
 
+    console.log("CharacterDancer");
   Dancer.prototype.step.call(this);
-  this.$node.toggle();
 };
