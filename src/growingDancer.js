@@ -7,7 +7,7 @@ var GrowingDancer = function(top, left, timeBetweenSteps){
 };
 
 GrowingDancer.prototype = Object.create(Dancer.prototype);
-GrowingDancer.constructor = GrowingDancer;
+GrowingDancer.prototype.constructor = GrowingDancer;
 
 GrowingDancer.prototype.step = function(){
   // call the old version of step at the beginning of any call to this new version of step

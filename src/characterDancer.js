@@ -7,11 +7,10 @@ var CharacterDancer = function(top, left, timeBetweenSteps){
 };
 
 CharacterDancer.prototype = Object.create(Dancer.prototype);
-CharacterDancer.constructor = CharacterDancer;
+CharacterDancer.prototype.constructor = CharacterDancer;
 
 CharacterDancer.prototype.step = function(){
 
   Dancer.prototype.step.call(this);
-  console.log(this);
   this.$node.toggle();
 };

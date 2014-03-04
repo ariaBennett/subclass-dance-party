@@ -12,7 +12,7 @@ var SanicCharacterDancer = function(top, left, timeBetweenSteps){
 };
 
 SanicCharacterDancer.prototype = Object.create(CharacterDancer.prototype);
-SanicCharacterDancer.constructor = SanicCharacterDancer;
+SanicCharacterDancer.prototype.constructor = SanicCharacterDancer;
 
 SanicCharacterDancer.prototype.step = function(){
   // call the old version of step at the beginning of any call to this new version of step
