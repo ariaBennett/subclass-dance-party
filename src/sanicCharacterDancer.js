@@ -15,7 +15,7 @@ SanicCharacterDancer.prototype = Object.create(CharacterDancer.prototype);
 SanicCharacterDancer.prototype.constructor = SanicCharacterDancer;
 
 SanicCharacterDancer.prototype.setPosition = function(){
-  this.$node[0].style.top = "62%";
+  this.$node[0].style.top = "-10%";
   this.$node[0].style.left = "1%";
 }
 
@@ -24,8 +24,15 @@ SanicCharacterDancer.prototype.step = function(){
   var that = this;
   that.$node.animateRotate(0, 1);
   var alreadySpinned = false;
-  this.$node[0].style.top = "62%";
+  this.$node[0].style.top = "-10%";
   this.$node[0].style.left = "1%";
+  var moveLeft0 = function() {
+    that.$node.animate({
+        top: "+=72%"
+    }, that.speed / 1.5, function() {
+      moveLeft1();
+    });
+  };
   var moveLeft1 = function() {
     that.$node.animate({
         left: "+=11%"
@@ -89,11 +96,11 @@ SanicCharacterDancer.prototype.step = function(){
     window.test = that.$node;
     that.$node.animate({
         top: "+=60%"
-    }, that.speed /2, function() {
+    }, that.speed /1.5, function() {
     });
   };
 
-moveLeft1();
+moveLeft0();
   // call the old version of step at the beginning of any call to this new version of step
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
