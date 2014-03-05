@@ -1,4 +1,16 @@
 $(document).ready(function(){
+  $.fn.animateRotate = function(angle, duration, easing, complete) {
+    var args = $.speed(duration, easing, complete);
+    var step = args.step;
+    return this.each(function(i, e) {
+        args.step = function(now) {
+            $.style(e, 'transform', 'rotate(' + now + 'deg)');
+            if (step) return step.apply(this, arguments);
+        };
+
+        $({deg: 0}).animate({deg: angle}, args);
+    });
+};
   window.dancers = [];
 
   // Blinky Dancer
@@ -7,11 +19,10 @@ $(document).ready(function(){
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     var dancer = new dancerMakerFunction(
-      (((window.innerHeight * Math.random()) / window.innerHeight) * 100) + "%",
-      (((window.innerWidth * Math.random()) / window.innerWidth) * 100) + "%",
+      (((window.innerHeight) / window.innerHeight) * 100) + "%",
+      (((window.innerWidth) / window.innerWidth) * 100) + "%",
       Math.random() * 1000
     );
-    dancer.step();
     window.dancers.push(dancer);
     $('body').append(dancer.$node);
   });

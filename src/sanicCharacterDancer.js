@@ -1,48 +1,95 @@
 var SanicCharacterDancer = function(top, left, timeBetweenSteps){
-  CharacterDancer.call(this, top, left, timeBetweenSteps);
 
  // console.log(this.$node);
 
-  this.$node = $('<img style="position: absolute; width="4%"; height="8%" src="./dancers/sanic.png"></img>');
+  this.$node = $('<img style="position: fixed; width: 4%; height: 8%;" src="./dancers/sanic.png"></img>');
+  this.setPosition();
+  this.speed = 500;
 //  console.log(this.$node);
-  this.$node[0].style.top = "62%";
-  this.$node[0].style.left = "1%";
   this.musik = $('<embed width="50" height="50" src="sanic.mp3">');
   document.body.appendChild(this.musik[0]);
+  CharacterDancer.call(this, top, left, timeBetweenSteps);
 };
 
 SanicCharacterDancer.prototype = Object.create(CharacterDancer.prototype);
 SanicCharacterDancer.prototype.constructor = SanicCharacterDancer;
 
+SanicCharacterDancer.prototype.setPosition = function(){
+  this.$node[0].style.top = "62%";
+  this.$node[0].style.left = "1%";
+}
+
 SanicCharacterDancer.prototype.step = function(){
   Dancer.prototype.step.call(this);
   var that = this;
-  console.log("SanicCharacterDancer", this);
-  that.$node[0].style.marginLeft = "0";
-  that.$node[0].style.marginTop = "0";
+  that.$node.animateRotate(0, 1);
+  var alreadySpinned = false;
+  this.$node[0].style.top = "62%";
+  this.$node[0].style.left = "1%";
   var moveLeft1 = function() {
-  console.log("mv1");
     that.$node.animate({
-        marginLeft: "+=11%"
-    }, 1000, function() {
+        left: "+=11%"
+    }, that.speed, function() {
       moveLeft2();
     });
   };
   var moveLeft2 = function() {
-  console.log("mv2");
     that.$node.animate({
-        marginLeft: "+=11%",
-        marginTop: "+=1.5%"
-    }, 1000, function() {
+        left: "+=11%",
+        top: "+=3.3%"
+    }, that.speed, function() {
       moveLeft3();
     });
   };
   var moveLeft3 = function() {
-  console.log("mv3");
     that.$node.animate({
-        marginLeft: "+=11%",
-        marginTop: "+=3%"
-    }, 1000, function() {
+        left: "+=14%",
+        top: "+=10%"
+    }, that.speed, function() {
+      moveLeft4();
+    });
+  };
+  var moveLeft4 = function() {
+    that.$node.animate({
+        left: "+=31%",
+        top: "-=2%"
+    }, that.speed, function() {
+      that.$node.animateRotate(-270, 1500);
+      moveLeft5();
+    });
+  };
+  var moveLeft5 = function() {
+    window.test = that.$node;
+    that.$node.animate({
+        left: "+=15%",
+        top: "-=20%",
+    }, that.speed, function() {
+      moveLeft6();
+    });
+  };
+  var moveLeft6 = function() {
+    window.test = that.$node;
+    that.$node.animate({
+        left: "-=13%",
+        top: "-=20%",
+    }, that.speed, function() {
+      moveLeft7();
+    });
+  };
+  var moveLeft7 = function() {
+    window.test = that.$node;
+    that.$node.animate({
+        left: "-=12%",
+        top: "+=20%",
+    }, that.speed, function() {
+      moveLeft8();
+    });
+  };
+  var moveLeft8 = function() {
+    window.test = that.$node;
+    that.$node.animate({
+        top: "+=60%"
+    }, that.speed /2, function() {
     });
   };
 
