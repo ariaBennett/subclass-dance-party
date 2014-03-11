@@ -1,3 +1,4 @@
+window.alreadyPlaying = false;
 var SanicCharacterDancer = function(top, left, timeBetweenSteps){
 
  // console.log(this.$node);
@@ -7,7 +8,10 @@ var SanicCharacterDancer = function(top, left, timeBetweenSteps){
   this.speed = 500;
 //  console.log(this.$node);
   this.musik = $('<embed width="50" height="50" src="sanic.mp3">');
-  document.body.appendChild(this.musik[0]);
+  if (window.alreadyPlaying === false) {
+    document.body.appendChild(this.musik[0]);
+    window.alreadyPlaying = true;
+  }
   CharacterDancer.call(this, top, left, timeBetweenSteps);
 };
 
